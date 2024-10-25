@@ -1,0 +1,18 @@
+<div class="w-full h-full">
+  <div class="flex">
+      <button routerLink="/">
+        <lucide-icon name="move-left"></lucide-icon>
+      </button>
+  </div>
+  <div>
+    <h1 class="text-3xl font-bold"> Add Money</h1>
+    <div class="bg-gray-800 rounded-lg">
+      <lucide-icon color="green" name="{{ currentOption.icon }}"></lucide-icon>
+      <h3 class="font-bold">{{ currentOption.name }}</h3>
+      <p>{{ currentOption.description }}</p>
+    </div>
+  </div>
+  <button class="bg-gray-600">
+    Change
+  </button>
+</div>
