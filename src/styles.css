@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+body, html {
   background-color: #111217;
   color: floralwhite;
 }

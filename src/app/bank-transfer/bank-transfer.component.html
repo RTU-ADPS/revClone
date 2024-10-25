@@ -1,18 +1,40 @@
 <div class="w-full h-full">
-  <div class="flex">
-      <button routerLink="/">
-        <lucide-icon name="move-left"></lucide-icon>
-      </button>
+  <div class="flex mb-3 m-5">
+    <button routerLink="/">
+      <lucide-icon name="move-left"></lucide-icon>
+    </button>
   </div>
   <div>
-    <h1 class="text-3xl font-bold"> Add Money</h1>
-    <div class="bg-gray-800 rounded-lg">
-      <lucide-icon color="green" name="{{ currentOption.icon }}"></lucide-icon>
-      <h3 class="font-bold">{{ currentOption.name }}</h3>
-      <p>{{ currentOption.description }}</p>
+    <h1 class="text-3xl font-bold m-5 mb-7"> Add Money</h1>
+    <div class="items-center justify-center flex mb-2">
+      <div class="bg-gray-800 rounded-lg flex p-4 w-11/12 ">
+        <div class="rounded-full m-auto bg-green-400 p-2 ">
+          <lucide-icon color="green"
+                       name="{{ currentOption.icon }}"></lucide-icon>
+        </div>
+        <div class="ml-2">
+          <h3 class="font-bold">{{ currentOption.name }}</h3>
+          <p>{{ currentOption.description }}</p>
+        </div>
+        <button class="bg-gray-600 rounded-3xl h-1/2 p-2  w-auto pl-4 pr-4">
+          Change
+        </button>
+      </div>
+
+    </div>
+    <div class="items-center justify-center flex ">
+    <div class="bg-gray-600 flex justify-between p-4 w-11/12 rounded">
+      <p>Personal: {{ user.userBalance }} €</p>
+      <input autofocus min="0" step="1"
+             [(ngModel)]="amount"
+             type="number"
+             class="text-right w-1/2 bg-gray-600 text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+    </div>
     </div>
   </div>
-  <button class="bg-gray-600">
-    Change
+
+
+  <button class="p-2 bg-white text-black w-10/12 rounded-3xl bottom-2 left-0 right-0 m-auto fixed"
+          (click)="addAmount(amount)">Continue
   </button>
 </div>
