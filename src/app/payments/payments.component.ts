@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {NavbarComponent} from "../navbar/navbar.component";
 import {HeaderComponent} from "../header/header.component";
 import {NgForOf, NgIf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {User} from "../shared/user";
 import {Payment} from "../shared/payment";
 import {DemodataService} from "../shared/demodata.service";
@@ -16,7 +16,7 @@ import {PaymentUser} from "../shared/payment-user";
     HeaderComponent,
     NgForOf,
     NgIf,
-    RouterLink
+    RouterModule
   ],
   templateUrl: './payments.component.html',
   styleUrl: './payments.component.css'

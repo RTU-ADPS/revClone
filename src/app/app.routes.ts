@@ -4,11 +4,15 @@ import {HomeComponent} from "./home/home.component";
 import {PaymentsComponent} from "./payments/payments.component";
 import {AccountComponent} from "./account/account.component";
 import {BudgetComponent} from "./budget/budget.component";
+import {FriendHistoryComponent} from "./friend-history/friend-history.component";
+import {TransactionHistoryComponent} from "./transaction-history/transaction-history.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'add-money', component: BankTransferComponent},
+  { path: 'transactions', component: TransactionHistoryComponent},
   { path: 'payments', component: PaymentsComponent},
+  { path: 'payments/:id', component: FriendHistoryComponent},
   { path: 'user', component: AccountComponent},
-  { path: 'budget', component: BudgetComponent}
+  { path: 'budget', component: BudgetComponent},
 ];

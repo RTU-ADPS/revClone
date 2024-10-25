@@ -65,6 +65,12 @@ export class DemodataService {
     {
       amount: 200,
       date: '2024-11-15',
+      description: 'Birthday Gift from Friends',
+      id: uuidv4()
+    },
+    {
+      amount: -100,
+      date: '2024-11-15',
       description: 'Drinks with Friends',
       id: uuidv4()
     }
@@ -82,6 +88,10 @@ export class DemodataService {
     {
       userId: this.Users[1].id,
       paymentId: this.paymentsMainUser[2].id,
+    },
+    {
+      userId: this.Users[1].id,
+      paymentId: this.paymentsMainUser[3].id,
     }
   ]
 
@@ -107,6 +117,18 @@ export class DemodataService {
       }
     });
     return Array.from(uniqueUsersMap.values());
+  }
+
+  getUserByPaymentId(paymentId: string): User | undefined {
+    const paymentUser = this.paymentHistoryMainUser.find(pu => pu.paymentId === paymentId);
+    if (paymentUser) {
+      return this.getUserById(paymentUser.userId);
+    }
+    return undefined;
+  }
+
+  getAllPayments(): Payment[] {
+    return this.paymentsMainUser;
   }
 
   getMainUser(): User {

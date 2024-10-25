@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="items-center justify-center flex mt-4">
   <div class="bg-gray-600 p-4 w-11/12 rounded-2xl">
-    <button class="flex mb-4 justify-between" *ngFor="let friend of friends">
+    <button [routerLink]="['/payments', i]" class="flex mb-4 justify-between" *ngFor="let friend of friends; index as i">
       <div class="text-gray-300">
         <p class="text-white font-bold">{{ friend.userFirstName }}</p>
         <p class="text-gray-100">{{ getMostRecentPayment(friend.id).amount}}</p>

@@ -1,0 +1,36 @@
+<div class="flex mb-3 m-5">
+  <button routerLink="/payments">
+    <lucide-icon name="move-left"></lucide-icon>
+  </button>
+</div>
+<h1 class="text-3xl font-bold m-5 mb-7">Transactions</h1>
+
+<div class="flex justify-center">
+  <div class="p-4 w-11/12 rounded-2xl">
+    <div class="mb-5" *ngFor="let group of groupPaymentsByDate().slice().reverse()">
+      <div class="flex justify-between mb-3">
+        <h2 class="text-xl">{{ group.date }}</h2>
+        <div *ngIf="group.total > 0; else belowZero">
+          <p>+{{ group.total }}€</p>
+        </div>
+        <ng-template #belowZero>
+          <p>{{ group.total }}€</p>
+        </ng-template>
+      </div>
+      <div class="text-gray-300 bg-gray-800 rounded-2xl p-2">
+        <button class="w-full h-full text-left flex justify-between pb-2 pt-2" *ngFor="let payment of group.payments">
+          <div>
+            <p class="text-white font-bold">{{ getPaymentUser(payment.id).userFirstName }}</p>
+            <p class="text-gray-300">{{ payment.description }}</p>
+          </div>
+          <div *ngIf="payment.amount > 0; else belowZero">
+            <p>+{{ payment.amount }}€</p>
+          </div>
+          <ng-template #belowZero>
+            <p>{{ payment.amount }}€</p>
+          </ng-template>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
