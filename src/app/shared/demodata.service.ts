@@ -127,6 +127,19 @@ export class DemodataService {
     return undefined;
   }
 
+  getPaymentsByUserId(userId: string | null): Payment[] {
+    const paymentHistoryForUniqueUser: Payment[] = [];
+    this.paymentHistoryMainUser.forEach(paymentUser => {
+      if (paymentUser.userId === userId) {
+        const payment = this.paymentsMainUser.find(payment => payment.id === paymentUser.paymentId);
+        if (payment) {
+          paymentHistoryForUniqueUser.push(payment);
+        }
+      }
+    });
+    return paymentHistoryForUniqueUser;
+  }
+
   getAllPayments(): Payment[] {
     return this.paymentsMainUser;
   }
