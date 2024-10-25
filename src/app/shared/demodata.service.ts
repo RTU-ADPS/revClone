@@ -87,12 +87,12 @@ export class DemodataService {
     },
     {
       userId: this.Users[1].id,
-      paymentId: this.paymentsMainUser[2].id,
+      paymentId: this.paymentsMainUser[3].id,
     },
     {
       userId: this.Users[1].id,
-      paymentId: this.paymentsMainUser[3].id,
-    }
+      paymentId: this.paymentsMainUser[2].id,
+    },
   ]
 
   getPaymentHistoryForUniqueUser(userId: string): Payment[] {
