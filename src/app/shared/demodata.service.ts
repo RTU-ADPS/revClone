@@ -10,7 +10,7 @@ export class DemodataService {
     userAccount: 'demo',
     userPassword: '124534',
     userFirstName: 'Nicole',
-    userBalance: 123.53
+    userBalance: 123.53,
   }
 
    transferOptions: BankingOptions[] = [
