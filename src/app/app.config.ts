@@ -3,9 +3,9 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import {Landmark, LucideAngularModule, MoveLeft, Plus, PlusCircle} from "lucide-angular";
+import {ArrowRightLeft, Home, Landmark, LucideAngularModule, MoveLeft, Plus, PlusCircle} from "lucide-angular";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(),
-  importProvidersFrom(LucideAngularModule.pick({Plus, Landmark, MoveLeft}))]
+  importProvidersFrom(LucideAngularModule.pick({Plus, Landmark, MoveLeft, Home, ArrowRightLeft}))]
 };

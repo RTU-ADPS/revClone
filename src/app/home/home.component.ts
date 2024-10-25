@@ -3,11 +3,12 @@ import {LucideAngularModule} from "lucide-angular";
 import {RouterModule} from "@angular/router";
 import {User} from "../shared/user";
 import {DemodataService} from "../shared/demodata.service";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [LucideAngularModule, RouterModule],
+  imports: [LucideAngularModule, RouterModule, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
