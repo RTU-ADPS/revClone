@@ -1,31 +1,53 @@
-<app-header></app-header>
-<div class="w-full h-full">
-  <div class="h-1/3">
-    <div class="grid justify-center items-center text-center h-full">
-      <p>
-        Personal - EUR
-      </p>
-      <h1 class="text-2xl">
-        {{ user.userBalance }} €
-      </h1>
+<div class="bg-gradient-to-t from-purple-500 to-pink-500">
+  <app-header></app-header>
+  <div class="w-full h-full">
+    <div class="h-1/3 mb-10">
+      <div class="grid justify-center items-center text-center h-full">
+        <p>
+          Personal - EUR
+        </p>
+        <h1 class="text-2xl">
+          {{ user.userBalance }} €
+        </h1>
+      </div>
+    </div>
+    <div class="h-1/3 pb-5">
+      <div class="flex justify-evenly items-center h-full">
+        <div class="text-center justify-center items-center">
+          <button routerLink="/add-money" class="bg-opacity-60 rounded-full bg-gray-400 h-full p-2">
+            <lucide-icon color="white" name="plus"></lucide-icon>
+          </button>
+          <p>Add money</p>
+        </div>
+        <div class="text-center justify-center items-center">
+          <button class="bg-opacity-60 rounded-full bg-gray-400 h-full p-2">
+            <lucide-icon color="white" name="landmark"></lucide-icon>
+          </button>
+          <p>Details</p>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="h-1/3">
-    <div class="flex justify-center items-center h-full">
-      <div class="text-center justify-center items-center">
-        <button routerLink="/add-money" class="rounded-full bg-blue-400 h-full p-2">
-          <lucide-icon color="white" name="plus"></lucide-icon>
-        </button>
-        <p>Add money</p>
+</div>
+<div class="items-center justify-center flex mt-4">
+  <div class="bg-gray-600 p-4 w-11/12 rounded-2xl">
+    <div class="flex mb-4 justify-between" *ngFor="let payment of paymentHistory">
+      <div class="text-gray-300">
+        <p class="text-white font-bold">{{ payment.fromUser.userFirstName }}</p>
+        <p>{{ payment.date }}</p>
+        <p>{{ payment.description }}</p>
       </div>
-      <div class="text-center justify-center items-center">
-        <button class="rounded-full bg-blue-400 h-full p-2">
-          <lucide-icon color="white" name="landmark"></lucide-icon>
-        </button>
-        <p>Details</p>
+      <div *ngIf="payment.amount > 0">
+        <p>+{{ payment.amount }}€</p>
+      </div>
+      <div *ngIf="payment.amount < 0">
+        <p>{{ payment.amount }}€</p>
       </div>
     </div>
-
+    <div class="flex justify-center">
+      <button routerLink="/payments">See all</button>
+    </div>
   </div>
 </div>
 <app-navbar></app-navbar>

@@ -26,7 +26,7 @@ export class BankTransferComponent {
   constructor(private demoService: DemodataService) {
     this.bankingOptions = this.demoService.getBankingOptions();
     this.currentOption = this.bankingOptions[0];
-    this.user = this.demoService.getUser();
+    this.user = this.demoService.getMainUser();
     this.amount = 10;
   }
 
