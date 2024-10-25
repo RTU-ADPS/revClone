@@ -32,18 +32,18 @@
 </div>
 <div class="items-center justify-center flex mt-4">
   <div class="bg-gray-600 p-4 w-11/12 rounded-2xl">
-    <div class="flex mb-4 justify-between" *ngFor="let payment of paymentHistory">
+    <div class="flex mb-4 justify-between" *ngFor="let payment of paymentHistory.slice().reverse() | slice:0:3">
       <div class="text-gray-300">
-        <p class="text-white font-bold">{{ payment.fromUser.userFirstName }}</p>
-        <p>{{ payment.date }}</p>
-        <p>{{ payment.description }}</p>
+        <p class="text-white font-bold">{{ payment.user.userFirstName }}</p>
+        <p>{{ payment.payment.date }}</p>
+        <p>{{ payment.payment.description }}</p>
       </div>
-      <div *ngIf="payment.amount > 0">
-        <p>+{{ payment.amount }}€</p>
+      <div *ngIf="payment.payment.amount > 0; else belowZero">
+        <p>+{{ payment.payment.amount }}€</p>
       </div>
-      <div *ngIf="payment.amount < 0">
-        <p>{{ payment.amount }}€</p>
-      </div>
+      <ng-template #belowZero>
+        <p>{{ payment.payment.amount }}€</p>
+      </ng-template>
     </div>
     <div class="flex justify-center">
       <button routerLink="/payments">See all</button>
