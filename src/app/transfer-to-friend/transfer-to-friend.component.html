@@ -18,24 +18,24 @@
     </div>
 
     <div class="flex w-full justify-center items-center">
-      <div class="rounded-3xl bg-gray-600 w-fit p-4 flex justify-center items-center"> Main
+      <div class="rounded-3xl bg-gray-800 w-fit p-4 flex justify-center items-center"> Main
         • {{ getMainUser().userBalance }}
         €
       </div>
     </div>
     <div class="mb-4 mt-4">
       <input type="text" id="description" formControlName="description"
-             class="text-left bg-gray-600 w-full p-4 text-white rounded-2xl focus:outline-none caret-blue-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+             class="text-left bg-gray-800 w-full p-4 text-white rounded-2xl focus:outline-none caret-blue-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
              placeholder="Add note"/>
     </div>
   </div>
   <div class="p-3 w-full">
     <button *ngIf="action === 'send'; else request" type="submit"
-            class="bg-white text-black p-2 rounded-2xl w-full fixed bottom-5 left-0">Send
+            class="p-2 bg-white text-black w-10/12 rounded-3xl bottom-2 left-0 right-0 m-auto fixed">Send
     </button>
     <ng-template #request>
       <button *ngIf="action === 'request'" type="submit"
-              class="bg-white text-black p-2 rounded-2xl w-full fixed bottom-5 left-0">Request
+              class="p-2 bg-white text-black w-10/12 rounded-3xl bottom-2 left-0 right-0 m-auto fixed">Request
       </button>
     </ng-template>
   </div>
