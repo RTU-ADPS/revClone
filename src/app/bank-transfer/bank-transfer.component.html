@@ -8,27 +8,29 @@
     <h1 class="text-3xl font-bold m-5 mb-7"> Add Money</h1>
     <div class="items-center justify-center flex mb-2">
       <div class="bg-gray-800 rounded-lg flex p-4 w-11/12 ">
-        <div class="rounded-full m-auto bg-green-400 p-2 ">
-          <lucide-icon color="green"
+        <div class="rounded-full m-auto bg-blue-500 p-2 ">
+          <lucide-icon color="blue"
                        name="{{ currentOption.icon }}"></lucide-icon>
         </div>
         <div class="ml-2">
           <h3 class="font-bold">{{ currentOption.name }}</h3>
           <p>{{ currentOption.description }}</p>
         </div>
+        <!--
         <button class="bg-gray-600 rounded-3xl h-1/2 p-2  w-auto pl-4 pr-4">
           Change
         </button>
+        -->
       </div>
 
     </div>
     <div class="items-center justify-center flex ">
-    <div class="bg-gray-600 flex justify-between p-4 w-11/12 rounded">
+    <div class="bg-gray-700 flex justify-between p-4 w-11/12 rounded">
       <p>Personal: {{ user.userBalance }} €</p>
       <input autofocus min="0" step="1"
              [(ngModel)]="amount"
              type="number"
-             class="text-right w-1/2 bg-gray-600 text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+             class="text-right w-1/2 bg-gray-700 text-white rounded focus:outline-none caret-blue-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
     </div>
     </div>
   </div>

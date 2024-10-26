@@ -5,35 +5,37 @@
     </button>
   </div>
 
-  <div class="w-full h-full p-3 overflow-y-auto">
-    <div [routerLink]="['/paymentinfo', payment.id]" class="w-full cursor-pointer" *ngFor="let payment of payments">
-      <div class="flex justify-end w-full mb-2">
-        <div class="bg-green-500 rounded-2xl w-2/5 p-4" *ngIf="payment.amount < 0; else belowZero">
-          <span class="text-xs bg-green-800 bg-opacity-60 w-auto p-1 rounded"> You sent </span>
-          <h2 class="text-2xl font-bold text-black"> {{ payment.amount }}€</h2>
-          <p class="text-black"> {{ payment.description }}</p>
-        </div>
-      </div>
-      <ng-template #belowZero class="w-full">
-        <div class="flex justify-start w-full mb-2">
-          <div class="bg-gray-700 rounded-2xl w-2/5 p-4 text-white">
-            <span class="text-xs bg-gray-800 bg-opacity-60 w-auto p-1 rounded"> You received </span>
-            <h2 class="text-2xl font-bold"> {{ payment.amount }}€</h2>
-            <p> {{ payment.description }}</p>
+    <div class="w-full h-full p-3 overflow-y-auto">
+      <div [routerLink]="['/paymentinfo', payment.id]" class="w-full cursor-pointer" *ngFor="let payment of payments">
+        <div class="flex justify-end w-full mb-2">
+          <div class="bg-blue-500 rounded-2xl w-2/5 p-4" *ngIf="payment.amount < 0; else belowZero">
+            <span class="text-xs bg-blue-800 bg-opacity-60 w-auto p-1 rounded"> You sent </span>
+            <h2 class="text-2xl font-bold text-black"> {{ payment.amount }}€</h2>
+            <p class="text-black"> {{ payment.description }}</p>
           </div>
         </div>
-      </ng-template>
+        <ng-template #belowZero class="w-full">
+          <div class="flex justify-start w-full mb-2">
+            <div class="bg-gray-700 rounded-2xl w-2/5 p-4 text-white">
+              <span class="text-xs bg-gray-800 bg-opacity-60 w-auto p-1 rounded"> You received </span>
+              <h2 class="text-2xl font-bold"> {{ payment.amount }}€</h2>
+              <p> {{ payment.description }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="flex justify-stretch p-3">
+      <button [routerLink]="['/payments', friendId, 'transfer', 'request']"
+              class="flex justify-center items-center rounded-2xl p-2 bg-gray-600 w-full mr-2">
+        <lucide-icon name="arrow-left"></lucide-icon>
+        <h2 class="text-xl font-bold">Request</h2>
+      </button>
+      <button [routerLink]="['/payments', friendId, 'transfer', 'send']"
+              class="flex justify-center items-center bg-white p-2 text-black w-full rounded-2xl">
+        <h2 class="text-xl font-bold">Send</h2>
+        <lucide-icon color="black" name="arrow-right"></lucide-icon>
+      </button>
     </div>
   </div>
-
-  <div class="flex justify-stretch p-3">
-    <button [routerLink]="['/payments', friendId, 'transfer', 'request']" class="flex justify-center items-center rounded-2xl p-2 bg-gray-500 w-full mr-2">
-      <lucide-icon name="arrow-left"></lucide-icon>
-      <h2 class="text-xl font-bold">Request</h2>
-    </button>
-    <button [routerLink]="['/payments', friendId, 'transfer', 'send']" class="flex justify-center items-center bg-white p-2 text-black w-full rounded-2xl">
-      <h2 class="text-xl font-bold">Send</h2>
-      <lucide-icon color="black" name="arrow-right"></lucide-icon>
-    </button>
-  </div>
-</div>

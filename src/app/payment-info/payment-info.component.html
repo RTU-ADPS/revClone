@@ -2,14 +2,17 @@
   <button (click)="goBack()">
     <lucide-icon name="move-left"></lucide-icon>
   </button>
-  <div *ngIf="payment">
-    <h2 class="text-xl pb-3"> {{ payment.amount }}€</h2>
+  <div *ngIf="payment" class="flex justify-between pt-5">
     <div *ngIf="user" class="flex flex-col">
-      <h3 class="text-green-500 font-bold">
+      <h3 class="text-blue-400 font-bold">
         {{ user.userFirstName }}
       </h3>
       <p> {{ payment.date }}</p>
     </div>
+    <h2 *ngIf="payment.amount > 0; else belowZero" class="text-xl pb-3"> +{{ payment.amount }}€</h2>
+    <ng-template #belowZero>
+      <h2 class="text-xl pb-3"> {{ payment.amount }}€</h2>
+    </ng-template>
   </div>
 
   <div *ngIf="user" class="bg-gray-800 rounded-xl mt-5">

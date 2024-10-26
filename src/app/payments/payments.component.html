@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="items-center justify-center flex mt-4">
-  <div class="bg-gray-600 p-4 w-11/12 rounded-2xl">
+  <div class="bg-gray-800 p-6 w-11/12 rounded-2xl">
     <button [routerLink]="['/payments', friend.id]" class="w-full flex mb-4 justify-between"
             *ngFor="let friend of friends; index as i">
       <div class="flex justify-between w-full text-left">
         <div class="text-gray-300">
-          <p class="text-white font-bold">{{ friend.userFirstName }}</p>
+          <p class="text-white text-xl font-bold">{{ friend.userFirstName }}</p>
           <div *ngIf="getMostRecentPayment(friend.id).amount > 0; else belowZero">
             <p>Sent you {{ getMostRecentPayment(friend.id).amount }}€.</p>
           </div>
