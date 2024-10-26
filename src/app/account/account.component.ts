@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {LucideAngularModule} from "lucide-angular";
+import {DemodataService} from "../shared/demodata.service";
+import {User} from "../shared/user";
 
 @Component({
   selector: 'app-account',
@@ -13,5 +15,10 @@ import {LucideAngularModule} from "lucide-angular";
   styleUrl: './account.component.css'
 })
 export class AccountComponent {
+  user: User;
+
+  constructor(private demodata: DemodataService) {
+    this.user = this.demodata.getMainUser();
+  }
 
 }

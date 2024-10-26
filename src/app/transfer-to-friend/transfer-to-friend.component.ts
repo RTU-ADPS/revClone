@@ -46,23 +46,23 @@ export class TransferToFriendComponent implements OnInit {
     const payment = this.createPayment();
     const user = this.demodata.getMainUser();
     const paymentToUser = this.createPaymentToUser(payment.id);
-    if (this.action === 'request') {
+    if (this.action === 'send') {
       payment.amount = -payment.amount;
     }
     user.userBalance += payment.amount;
     this.demodata.addPaymentToHistory(paymentToUser);
     this.demodata.addPaymentToMainUser(payment);
 
-    const friendUser = this.getFriendUser();
-    console.log(this.demodata.getPaymentHistoryMainUser())
     this.router.navigate(['/payments', this.friendId]).then(r => console.log(r));
   }
 
   createPayment(): Payment {
     const { amount, description } = this.paymentForm.value;
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-CA')
     return {
       amount,
-      date: new Date().toISOString(),
+      date: formattedDate,
       description,
       id: uuidv4()
     };
@@ -85,6 +85,10 @@ export class TransferToFriendComponent implements OnInit {
 
   getFriendUser() {
     return this.demodata.getUserById(this.friendId);
+  }
+
+  getMainUser() {
+    return this.demodata.getMainUser();
   }
 
 }

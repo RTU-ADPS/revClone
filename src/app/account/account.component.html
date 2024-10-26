@@ -2,4 +2,31 @@
   <button routerLink="/">
     <lucide-icon name="move-left"></lucide-icon>
   </button>
+  <h2 class="text-xl"> {{ user.userBalance }}€</h2>
+</div>
+
+<div class="flex flex-col justify-center items-center">
+  <h1 class="font-bold text-3xl"> {{ user.userFirstName }}</h1>
+  <h3 class="text-gray-600"> &#64;{{ user.userAccount }}</h3>
+</div>
+<div class="mb-3 m-5">
+  <h1 class="font-bold text-2xl">Account details</h1>
+  <div class="bg-gray-800 rounded-xl">
+    <div class="flex flex-col text-left p-3">
+      <div class="mb-2">
+        <div class="text-gray-400"> IBAN</div>
+        <div class=""> {{ user.iban }}</div>
+      </div>
+      <div class="mt-2 mb-2">
+        <div class="text-gray-400"> BIC/SWIFT code</div>
+        <div class="">REVCLONE21</div>
+      </div>
+      <div class="mt-2">
+        <div class="text-gray-400"> Bank name and address</div>
+        <div class="">RTU<br>6A Kipsalas Street, Riga LV-1048
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

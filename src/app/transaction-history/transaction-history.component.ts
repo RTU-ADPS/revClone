@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LucideAngularModule} from "lucide-angular";
 import {RouterLink} from "@angular/router";
 import {DemodataService} from "../shared/demodata.service";
@@ -6,6 +6,7 @@ import {Payment} from "../shared/payment";
 import {PaymentUser} from "../shared/payment-user";
 import {User} from "../shared/user";
 import {NgForOf, NgIf, SlicePipe} from "@angular/common";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-transaction-history',
@@ -20,12 +21,29 @@ import {NgForOf, NgIf, SlicePipe} from "@angular/common";
   templateUrl: './transaction-history.component.html',
   styleUrl: './transaction-history.component.css'
 })
-export class TransactionHistoryComponent {
-  paymentHistory: PaymentUser[];
-  allPayments: Payment[];
-
+export class TransactionHistoryComponent implements OnInit, OnDestroy {
+  paymentHistory: PaymentUser[] = [];
+  allPayments: Payment[] = [];
+  private paymentUpdateSubscription: Subscription | undefined;
 
   constructor(private demoService: DemodataService) {
+  }
+
+  ngOnInit(): void {
+    this.loadPayments();
+
+    this.paymentUpdateSubscription = this.demoService.paymentUpdates$.subscribe(() => {
+      this.loadPayments();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.paymentUpdateSubscription) {
+      this.paymentUpdateSubscription.unsubscribe();
+    }
+  }
+
+  loadPayments(): void {
     this.paymentHistory = this.demoService.getPaymentHistoryMainUser();
     this.allPayments = this.demoService.getAllPayments();
   }
@@ -34,9 +52,6 @@ export class TransactionHistoryComponent {
     return <User>this.demoService.getUserByPaymentId(paymentId);
   }
 
-  getPaymentById(paymentId: string): Payment | undefined {
-    return this.demoService.getPaymentById(paymentId);
-  }
 
   groupPaymentsByDate(): { date: string, payments: Payment[], total: number }[] {
     const paymentMap = new Map<string, Payment[]>();
@@ -54,6 +69,5 @@ export class TransactionHistoryComponent {
       total: payments.reduce((sum, payment) => sum + payment.amount, 0)
     }));
   }
-
 
 }

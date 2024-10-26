@@ -1,27 +1,42 @@
-<div class="flex mb-3 m-5">
+<div class="flex mb-3 m-5 ">
   <button [routerLink]="['/payments', friendId]">
     <lucide-icon name="move-left"></lucide-icon>
   </button>
 
-  <div>
+  <div class="ml-5">
     <h3 class="font-bold text-xl">{{ getFriendUser().userFirstName }}</h3>
     <p class="text-gray-600"> &#64;{{ getFriendUser().userAccount }}</p>
   </div>
 </div>
 
-<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="p-3">
-  <div >
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="p-3 w-full max-w-md">
+  <div>
     <div class="mb-4">
-      <input autofocus type="number" id="amount" formControlName="amount" class="text-center bg-transparent w-full text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="0€" />
+      <input autofocus type="number" id="amount" formControlName="amount"
+             class="text-center text-3xl bg-transparent w-full text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+             placeholder="0€"/>
     </div>
 
-    <div class="mb-4">
-      <input type="text" id="description" formControlName="description" class="text-left bg-gray-600 w-full p-2 text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="Add note" />
+    <div class="flex w-full justify-center items-center">
+      <div class="rounded-3xl bg-gray-600 w-fit p-4 flex justify-center items-center"> Main
+        • {{ getMainUser().userBalance }}
+        €
+      </div>
     </div>
-
-    <button *ngIf="action === 'send'; else request" type="submit" class="bg-white text-black p-2 rounded-2xl w-full">Send</button>
+    <div class="mb-4 mt-4">
+      <input type="text" id="description" formControlName="description"
+             class="text-left bg-gray-600 w-full p-4 text-white rounded-2xl focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+             placeholder="Add note"/>
+    </div>
+  </div>
+  <div class="p-3 w-full">
+    <button *ngIf="action === 'send'; else request" type="submit"
+            class="bg-white text-black p-2 rounded-2xl w-full fixed bottom-5 left-0">Send
+    </button>
     <ng-template #request>
-      <button *ngIf="action === 'request'; else request" type="submit" class="bg-white text-black p-2 rounded-2xl w-full">Request</button>
+      <button *ngIf="action === 'request'" type="submit"
+              class="bg-white text-black p-2 rounded-2xl w-full fixed bottom-5 left-0">Request
+      </button>
     </ng-template>
   </div>
 </form>
