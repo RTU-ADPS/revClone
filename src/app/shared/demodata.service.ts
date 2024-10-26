@@ -157,8 +157,8 @@ export class DemodataService {
     return <User>this.Users.find(user => user.id === id);
   }
 
-  getPaymentById(paymentId: string): Payment | undefined {
-    return this.paymentsMainUser.find(payment => payment.id === paymentId);
+  getPaymentById(paymentId: string): Payment {
+    return <Payment>this.paymentsMainUser.find(payment => payment.id === paymentId);
   }
 
   addPaymentToHistory(paymentUser: PaymentUser): void {

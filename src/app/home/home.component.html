@@ -32,7 +32,8 @@
 </div>
 <div class="items-center justify-center flex mt-4">
   <div class="bg-gray-600 p-4 w-11/12 rounded-2xl">
-    <div class="flex mb-4 justify-between" *ngFor="let payment of paymentHistory.slice().reverse() | slice:0:3">
+    <div [routerLink]="['/paymentinfo', payment.payment.id]" class="flex mb-4 justify-between cursor-pointer"
+         *ngFor="let payment of paymentHistory.slice().reverse() | slice:0:3">
       <div class="text-gray-300">
         <p class="text-white font-bold">{{ payment.user.userFirstName }}</p>
         <p>{{ payment.payment.date }}</p>

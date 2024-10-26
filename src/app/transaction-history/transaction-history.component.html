@@ -18,7 +18,7 @@
         </ng-template>
       </div>
       <div class="text-gray-300 bg-gray-800 rounded-2xl p-2">
-        <button class="w-full h-full text-left flex justify-between pb-2 pt-2" *ngFor="let payment of group.payments">
+        <button [routerLink]="['/paymentinfo', payment.id]" class="w-full h-full text-left flex justify-between pb-2 pt-2" *ngFor="let payment of group.payments">
           <div>
             <p class="text-white font-bold">{{ getPaymentUser(payment.id).userFirstName }}</p>
             <p class="text-gray-300">{{ payment.description }}</p>
