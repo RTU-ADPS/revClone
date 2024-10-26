@@ -3,7 +3,6 @@ import {BankTransferComponent} from "./bank-transfer/bank-transfer.component";
 import {HomeComponent} from "./home/home.component";
 import {PaymentsComponent} from "./payments/payments.component";
 import {AccountComponent} from "./account/account.component";
-import {BudgetComponent} from "./budget/budget.component";
 import {FriendHistoryComponent} from "./friend-history/friend-history.component";
 import {TransactionHistoryComponent} from "./transaction-history/transaction-history.component";
 import {TransferToFriendComponent} from "./transfer-to-friend/transfer-to-friend.component";
@@ -18,5 +17,4 @@ export const routes: Routes = [
   { path: 'payments/:id/transfer/:action', component: TransferToFriendComponent},
   { path: 'user', component: AccountComponent},
   { path: 'paymentinfo/:paymentid', component: PaymentInfoComponent},
-  { path: 'budget', component: BudgetComponent},
 ];

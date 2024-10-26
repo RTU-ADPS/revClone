@@ -6,9 +6,9 @@
   </div>
 
   <div class="w-full h-full p-3 overflow-y-auto">
-    <div class="w-full" *ngFor="let payment of payments">
+    <div [routerLink]="['/paymentinfo', payment.id]" class="w-full cursor-pointer" *ngFor="let payment of payments">
       <div class="flex justify-end w-full mb-2">
-        <div class="bg-green-400 rounded-2xl w-2/5 p-4" *ngIf="payment.amount < 0; else belowZero">
+        <div class="bg-green-500 rounded-2xl w-2/5 p-4" *ngIf="payment.amount < 0; else belowZero">
           <span class="text-xs bg-green-800 bg-opacity-60 w-auto p-1 rounded"> You sent </span>
           <h2 class="text-2xl font-bold text-black"> {{ payment.amount }}€</h2>
           <p class="text-black"> {{ payment.description }}</p>

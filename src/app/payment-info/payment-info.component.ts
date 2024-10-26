@@ -3,7 +3,7 @@ import {LucideAngularModule} from "lucide-angular";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {DemodataService} from "../shared/demodata.service";
 import {Payment} from "../shared/payment";
-import {NgIf} from "@angular/common";
+import {Location, NgIf} from "@angular/common";
 import {User} from "../shared/user";
 
 @Component({
@@ -22,8 +22,13 @@ export class PaymentInfoComponent implements OnInit {
   payment: Payment | undefined;
   user: User | undefined;
 
-  constructor(private route: ActivatedRoute, private demoService: DemodataService) {}
+  constructor(private route: ActivatedRoute,
+              private demoService: DemodataService,
+              private location: Location) {}
 
+  goBack(): void {
+    this.location.back();
+  }
 
   ngOnInit() {
     this.paymentId = this.route.snapshot.paramMap.get('paymentid') ?? '';
