@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'transactions', component: TransactionHistoryComponent},
   { path: 'payments', component: PaymentsComponent},
   { path: 'payments/:id', component: FriendHistoryComponent},
-  { path: 'payments/:id/transfer', component: TransferToFriendComponent},
+  { path: 'payments/:id/transfer/:action', component: TransferToFriendComponent},
   { path: 'user', component: AccountComponent},
   { path: 'budget', component: BudgetComponent},
 ];

@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
 import {LucideAngularModule} from "lucide-angular";
 import {DemodataService} from "../shared/demodata.service";
 import {Payment} from "../shared/payment";
 import {NgForOf, NgIf} from "@angular/common";
 import {User} from "../shared/user";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-friend-history',
@@ -19,21 +20,32 @@ import {User} from "../shared/user";
   templateUrl: './friend-history.component.html',
   styleUrl: './friend-history.component.css'
 })
-export class FriendHistoryComponent implements OnInit {
+export class FriendHistoryComponent implements OnInit, OnDestroy {
   friendId: string = '';
-  user: User;
-  payments: Payment[];
+  payments: Payment[] = [];
+  user: User | undefined;
+  private paymentUpdateSubscription: Subscription | undefined;
 
-  constructor(private route: ActivatedRoute, private demoService: DemodataService) {
-    this.payments = this.demoService.getPaymentsByUserId(this.friendId);
-    this.user = this.demoService.getUserById(this.friendId);
-  }
+  constructor(private route: ActivatedRoute, private demoService: DemodataService) {}
 
   ngOnInit(): void {
-    const routeId = this.route.snapshot.paramMap.get('id');
+    this.friendId = this.route.snapshot.paramMap.get('id') ?? '';
+    this.user = this.demoService.getUserById(this.friendId);
+    this.loadPayments();
 
-    if (routeId) {
-      this.friendId = routeId;
+    this.paymentUpdateSubscription = this.demoService.paymentUpdates$.subscribe(() => {
+      this.loadPayments();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.paymentUpdateSubscription) {
+      this.paymentUpdateSubscription.unsubscribe();
+    }
+  }
+
+  loadPayments(): void {
+    if (this.friendId) {
       this.payments = this.demoService.getPaymentsByUserId(this.friendId);
     }
   }

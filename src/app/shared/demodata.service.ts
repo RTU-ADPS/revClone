@@ -4,11 +4,13 @@ import {BankingOptions} from "./banking-options";
 import {v4 as uuidv4} from 'uuid';
 import {Payment} from "./payment";
 import {PaymentUser} from "./payment-user";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DemodataService {
+
 
   Users: User[] = [{
     userAccount: 'demo',
@@ -95,6 +97,9 @@ export class DemodataService {
     },
   ]
 
+  private paymentUpdateSubject = new BehaviorSubject<void>(undefined);
+  paymentUpdates$ = this.paymentUpdateSubject.asObservable();
+
   getPaymentHistoryForUniqueUser(userId: string): Payment[] {
     const paymentHistoryForUniqueUser: Payment[] = [];
     this.paymentHistoryMainUser.forEach(paymentUser => {
@@ -154,6 +159,16 @@ export class DemodataService {
 
   getPaymentById(paymentId: string): Payment | undefined {
     return this.paymentsMainUser.find(payment => payment.id === paymentId);
+  }
+
+  addPaymentToHistory(paymentUser: PaymentUser): void {
+    this.paymentHistoryMainUser.push(paymentUser);
+    this.paymentUpdateSubject.next();
+  }
+
+  addPaymentToMainUser(payment: Payment): void {
+    this.paymentsMainUser.push(payment);
+    this.paymentUpdateSubject.next();
   }
 
 

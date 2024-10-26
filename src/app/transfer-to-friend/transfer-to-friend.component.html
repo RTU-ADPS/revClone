@@ -1,1 +1,27 @@
-<p>transfer-to-friend works!</p>
+<div class="flex mb-3 m-5">
+  <button [routerLink]="['/payments', friendId]">
+    <lucide-icon name="move-left"></lucide-icon>
+  </button>
+
+  <div>
+    <h3 class="font-bold text-xl">{{ getFriendUser().userFirstName }}</h3>
+    <p class="text-gray-600"> &#64;{{ getFriendUser().userAccount }}</p>
+  </div>
+</div>
+
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="p-3">
+  <div >
+    <div class="mb-4">
+      <input autofocus type="number" id="amount" formControlName="amount" class="text-center bg-transparent w-full text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="0€" />
+    </div>
+
+    <div class="mb-4">
+      <input type="text" id="description" formControlName="description" class="text-left bg-gray-600 w-full p-2 text-white rounded focus:outline-none caret-green-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="Add note" />
+    </div>
+
+    <button *ngIf="action === 'send'; else request" type="submit" class="bg-white text-black p-2 rounded-2xl w-full">Send</button>
+    <ng-template #request>
+      <button *ngIf="action === 'request'; else request" type="submit" class="bg-white text-black p-2 rounded-2xl w-full">Request</button>
+    </ng-template>
+  </div>
+</form>
